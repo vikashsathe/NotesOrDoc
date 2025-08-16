@@ -9,7 +9,7 @@ const CardContaier = () => {
     ]
   return (
     <div className='absolute top-0 w-full h-screen flex justify-center items-center'>
-        <div className='p-5 gap-5 flex justify-center items-center flex-wrap'>
+        <div className='p-5 gap-5 flex justify-center items-center flex-wrap max-h-full overflow-scroll'>
 
         <Card />
         <Card />
