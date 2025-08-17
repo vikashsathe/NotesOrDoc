@@ -24,4 +24,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+// PUT /api/cards/:id
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const updated = await Card.findByIdAndUpdate(id, req.body, { new: true });
+//     res.json(updated);
+//   } catch (err) {
+//     res.status(500).json({ error: "Failed to update card" });
+//   }
+// });
 module.exports = router;
