@@ -1,20 +1,31 @@
-const express = require('express')
-const mongoose = require('mongoose')
+const express = require("express")
+const bodyParser = require("body-parser")
+const connectDB = require("./config/db")   // ✅ correct path
+const cors = require("cors")
 
-const app = express()
+const app = express()   // <-- first create app
 
-// connect mongodb
-mongoose.connect("mongodb://127.0.0.1:27017/notes")
-    .then(() => console.log("✅ MongoDB connected"))
-    .catch(err => console.log("MongoDB connection error:", err))
+// middleware
+app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get("/", (req, res) => {
-    res.send("Hello, Express + MongoDB!")
+// connect database
+connectDB()
+
+// routes
+
+const notesRoutes = require("./routes/notesRoutes"); // ✅ add notes route
+app.use("/api/notes", notesRoutes); // ✅ mount here
+
+// routes
+const authRoutes = require("./routes/authRoutes")
+app.use("/auth", authRoutes)
+
+app.listen(3000, () => {
+    console.log("🚀 Server running on http://localhost:3000")
 })
 
 
-const port = 8000;
-app.listen(8000, () => {
-    console.log(`Server running on ${port}`)
-})
- 
+
+
