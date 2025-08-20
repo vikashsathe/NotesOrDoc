@@ -1,9 +1,9 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const connectDB = require("./config/db")   // ✅ correct path
+const connectDB = require("./config/db")   
 const cors = require("cors")
 
-const app = express()   // <-- first create app
+const app = express()   
 
 // middleware
 app.use(cors())
@@ -14,16 +14,21 @@ app.use(bodyParser.urlencoded({ extended: true }))
 connectDB()
 
 // routes
+const notesRoutes = require("./routes/notesRoutes"); 
+app.use("/api/notes", notesRoutes); 
 
-const notesRoutes = require("./routes/notesRoutes"); // ✅ add notes route
-app.use("/api/notes", notesRoutes); // ✅ mount here
 
-// routes
+const todoRoutes = require("./routes/todoRoutes"); 
+app.use("/api/todo", todoRoutes); 
+
+
 const authRoutes = require("./routes/authRoutes")
 app.use("/auth", authRoutes)
 
-app.listen(3000, () => {
-    console.log("🚀 Server running on http://localhost:3000")
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`)
 })
 
 

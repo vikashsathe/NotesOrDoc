@@ -3,8 +3,10 @@ import React from 'react'
 const MainContainer = () => {
   return (
     <div className='w-full h-screen bg-zinc-800 flex items-center justify-center text-zinc-900'>
-  <h1 className="text-9xl font-semibold tracking-tighter">NOTE</h1>
+  <h1 className="text-8xl font-semibold text-zinc-900 tracking-tighter"><span className="text-yellow-500 opacity-75">Keep</span>Note</h1>
+  
 </div>
+
 
   )
 }

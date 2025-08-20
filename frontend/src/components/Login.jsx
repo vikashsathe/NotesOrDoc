@@ -11,30 +11,33 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+  try {
+    const res = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-      const msg = await res.text();
+    const data = await res.json();
 
-      if (res.ok) {
-        setMessage("✅ Login successful");
-          // ✅ Save login status (or token if your API sends it)
-  localStorage.setItem("isLoggedIn", "true");
-        navigate("/"); 
-      } else {
-        setMessage(msg);
-      }
-    } catch (err) {
-      setMessage("❌ Error: " + err.message);
+    if (res.ok) {
+      setMessage("✅ Login successful");
+
+      
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      navigate("/"); 
+    } else {
+      setMessage(data.message || "Login failed");
     }
-  };
+  } catch (err) {
+    setMessage("Error: " + err.message);
+  }
+};
 
   return (
     <div className="bg-zinc-700 loginDiv w-full h-screen relative">
