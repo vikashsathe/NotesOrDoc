@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const todoSchema = new mongoose.Schema({
   title: { type: String, required: true },
   task: [{ type: String, required: true }],
-  color: { type: String, default: "#FFFFFF" },
+  color: { type: String, default: "#3F3F47" },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 }, { timestamps: true });
 

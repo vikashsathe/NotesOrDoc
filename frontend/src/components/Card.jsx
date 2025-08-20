@@ -81,18 +81,50 @@ const Card = ({ data, reference, onDelete, onUpdate }) => {
       className="h-[290px] w-[250px] relative px-5 py-5 rounded-2xl overflow-hidden shadow-lg"
       style={{ backgroundColor: tempData.color || "#3F3F47" }}
     >
-      <div className="flex justify-between items-center mb-2">
-        <i className="ri-file-line text-3xl text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#34A853] via-[#FBBC05] to-[#EA4335]"></i>
-        <div className="flex gap-2">
-          <i
-            onClick={onDelete}
-            className="ri-close-line text-gray-300 text-xl cursor-pointer"
-          ></i>
-        </div>
+
+       {/* Header Note  */}
+      <div className="todoCardHeader w-full bg-transparent text-white absolute top-0 left-0">
+<div className="px-5 py-2 flex justify-between text-zinc-950">
+  <div onMouseLeave={togglePalette} className="flex items-center gap-2">
+            <i
+              onMouseEnter={togglePalette}
+              className="ri-palette-fill text-xl cursor-pointer"
+            ></i>
+            <div
+              className={`flex gap-1 transition-all duration-300 overflow-hidden ${
+                isOpen ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0"
+              }`}
+            >
+              {[
+                "#3F3F47",
+                "#34d399",
+                "#60a5fa",
+                "#f87171",
+                "#fbbf24",
+                "#a78bfa",
+                "#f472b6",
+                "#22d3ee",
+              ].map((clr) => (
+                <div
+                  key={clr}
+                  className="w-4 h-4 border-[0.5px] rounded-full cursor-pointer"
+                  style={{ backgroundColor: clr }}
+                  onClick={() => setTempData({ ...tempData, color: clr })}
+                ></div>
+              ))}
+            </div>
+          </div>
+          <div className="flex gap-1">
+   <i onClick={handleShare} className="ri-download-fill text-xl  cursor-pointer"></i>
+   <i onClick={onDelete} className="ri-close-line text-xl cursor-pointer"></i>
+   </div>
+</div>
       </div>
 
+
+
       {isEditing ? (
-        <div className="flex flex-col">
+        <div className="flex flex-col mt-10">
           <input
             name="title"
             value={tempData.title}
@@ -103,51 +135,15 @@ const Card = ({ data, reference, onDelete, onUpdate }) => {
             name="description"
             value={tempData.description}
             onChange={handleChange}
-            className="text-sm mt-2 text-white capitalize min-h-[120px]"
+            className="text-sm mt-2 text-white capitalize min-h-[100px]"
             style={{ scrollbarWidth: "none" }}
           />
-
-          {/* color palette */}
-          <div onMouseLeave={togglePalette} className="flex items-center gap-2">
-            <i
-              onMouseEnter={togglePalette}
-              className="ri-palette-fill text-gray-300 text-xl cursor-pointer"
-            ></i>
-            <div
-              className={`flex gap-1 transition-all duration-300 overflow-hidden ${
-                isOpen ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0"
-              }`}
-            >
-             {[
-  "#3F3F47",
-  "#34d399",
-  "#60a5fa",
-  "#f87171",
-  "#fbbf24",
-  "#a78bfa",
-  "#f472b6",
-  "#22d3ee",
-].map((clr) => (
-  <div
-    key={clr}
-    className="w-4 h-4 border-[0.5px] rounded-full cursor-pointer"
-    style={{ backgroundColor: clr }}
-    onClick={() => setTempData({ ...tempData, color: clr })}
-  ></div>
-))}
-
-            </div>
-          </div>
-
-          <i
-            onClick={handleSave}
-            className="absolute bottom-12 right-5 text-yellow-500 ri-check-double-line text-2xl cursor-pointer"
-          ></i>
+          <i onClick={handleSave} className="ri-check-double-line text-xl cursor-pointer"></i>
           
         </div>
       ) : (
         <>
-          <h5 className="text-sm text-white capitalize">{tempData.title}</h5>
+          <h3 className="text-sm text-white capitalize mt-10">{tempData.title}</h3>
           <p
             className="text-sm mt-2 text-white capitalize min-h-[120px]"
             style={{ scrollbarWidth: "none" }}
@@ -157,13 +153,13 @@ const Card = ({ data, reference, onDelete, onUpdate }) => {
         </>
       )}
 
-      <div className="absolute bottom-4 left-0 w-full flex justify-between items-center px-5 text-gray-300 text-xs">
-        <span>{createdDate.split(",")[0]}</span>
-        <i
-          onClick={handleShare}
-          className="ri-download-fill text-xl  cursor-pointer"
-        ></i>
+       {/* Footer */}
+      <div className="absolute bottom-2 left-0 w-full flex justify-between items-center px-5 text-gray-300 text-xs">
+        <span className="text-[10px]">{createdDate.split(",")[0]}</span>
+           <i className="ri-file-line text-2xl text-zinc-950"></i>
       </div>
+
+  
     </motion.div>
   );
 };
