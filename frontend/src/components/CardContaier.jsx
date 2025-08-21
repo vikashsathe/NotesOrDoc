@@ -4,6 +4,23 @@ import Todo from "./Todo";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CardContainer = () => {
+
+  const [activeForm, setActiveForm] = useState(null)
+  const formRef = useRef(null);
+
+   // Close form if clicked outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (formRef.current && !formRef.current.contains(event.target)) {
+        setActiveForm(null);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+
   const ref = useRef(null);
 
   // Notes & Todos state
@@ -12,12 +29,10 @@ const CardContainer = () => {
 
   // Note form state
   const [formData, setFormData] = useState({ title: "", description: "" });
-  const [showNoteForm, setShowNoteForm] = useState(false);
 
   // Todo form state
   const [todoTitle, setTodoTitle] = useState("");
   const [tasks, setTasks] = useState([{ id: Date.now(), value: "" }]);
-  const [showTodoForm, setShowTodoForm] = useState(false);
 
   const [showIcons, setShowIcons] = useState(false);
 
@@ -64,7 +79,7 @@ const CardContainer = () => {
       const data = await res.json();
       setNotes([...notes, data]);
       setFormData({ title: "", description: "" });
-      setShowNoteForm(false);
+      setActiveForm(null)
     } catch (error) {
       console.error("Error saving note:", error);
     }
@@ -130,7 +145,8 @@ const CardContainer = () => {
       setTodos([...todos, data]);
       setTodoTitle("");
       setTasks([{ id: Date.now(), value: "" }]);
-      setShowTodoForm(false);
+      // setShowTodoForm(false);
+      setActiveForm(null)
     } catch (error) {
       console.error("Error saving todo:", error);
     }
@@ -207,10 +223,11 @@ const CardContainer = () => {
 
       {/* Note Form */}
       <AnimatePresence>
-        {showNoteForm && (
+        {activeForm === 'note' && (
           <motion.div
             drag
             dragConstraints={ref}
+            ref={formRef}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -219,7 +236,7 @@ const CardContainer = () => {
             <div className="flex justify-between items-center">
               <i
                 onClick={() => (
-                  setShowNoteForm(false)
+                  setActiveForm(null)
                 )}
                 className="ri-close-line text-2xl cursor-pointer"
               ></i>
@@ -256,10 +273,11 @@ const CardContainer = () => {
 
       {/* Todo Form */}
       <AnimatePresence>
-        {showTodoForm && (
+        {activeForm === 'todo' && (
           <motion.div
             drag
             dragConstraints={ref}
+            ref={formRef}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -269,7 +287,7 @@ const CardContainer = () => {
             <form onSubmit={handleTodoSubmit}>
               <div className="flex justify-between items-center">
                 <i
-                  onClick={() => setShowTodoForm(false)}
+                  onClick={() => setActiveForm(null)}
                   className="ri-close-line text-3xl cursor-pointer"
                 ></i>
                 <h5>Create ToDo</h5>
@@ -337,8 +355,7 @@ const CardContainer = () => {
               whileHover={{ scale: 1.2 }}
               className="cursor-pointer"
               onClick={() => (
-                setShowTodoForm(true),
-                setShowNoteForm(false)
+                 setActiveForm("todo")
               )}
             >
               <i className="ri-todo-line text-yellow-500"></i>
@@ -347,8 +364,7 @@ const CardContainer = () => {
               whileHover={{ scale: 1.2 }}
               className="cursor-pointer"
               onClick={() => (
-                setShowNoteForm(true),
-                setShowTodoForm(false)
+                setActiveForm('note')
               )}
             >
               <i className="ri-sticky-note-add-line text-yellow-500"></i>
