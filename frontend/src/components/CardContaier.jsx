@@ -218,7 +218,9 @@ const CardContainer = () => {
           >
             <div className="flex justify-between items-center">
               <i
-                onClick={() => setShowNoteForm(false)}
+                onClick={() => (
+                  setShowNoteForm(false)
+                )}
                 className="ri-close-line text-2xl cursor-pointer"
               ></i>
               <h5>Create New Note</h5>
@@ -334,14 +336,20 @@ const CardContainer = () => {
             <motion.span
               whileHover={{ scale: 1.2 }}
               className="cursor-pointer"
-              onClick={() => setShowTodoForm(true)}
+              onClick={() => (
+                setShowTodoForm(true),
+                setShowNoteForm(false)
+              )}
             >
               <i className="ri-todo-line text-yellow-500"></i>
             </motion.span>
             <motion.span
               whileHover={{ scale: 1.2 }}
               className="cursor-pointer"
-              onClick={() => setShowNoteForm(true)}
+              onClick={() => (
+                setShowNoteForm(true),
+                setShowTodoForm(false)
+              )}
             >
               <i className="ri-sticky-note-add-line text-yellow-500"></i>
             </motion.span>
