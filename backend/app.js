@@ -8,8 +8,11 @@ dotenv.config();
 
 const app = express();
 
+
+
 // middleware
-app.use(cors());
+// app.use(cors());
+app.use(cors({ origin: "*" })); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
