@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import NoteCard from "./NoteCard";
 import TodoCard from "./TodoCard";
 import { motion, AnimatePresence } from "framer-motion";
+import server from "../environment";
 
 const FrontSectionContaier = () => {
 
@@ -43,10 +44,10 @@ const FrontSectionContaier = () => {
         const token = localStorage.getItem("token");
 
         const [notesRes, todosRes] = await Promise.all([
-          fetch("http://localhost:3000/api/notes", {
+          fetch(`${server}/api/notes`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:3000/api/todo", {
+          fetch(`${server}/api/todo`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -68,7 +69,7 @@ const FrontSectionContaier = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/api/notes", {
+      const res = await fetch(`${server}/api/notes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +88,7 @@ const FrontSectionContaier = () => {
 
   const handleDeleteNote = async (id) => {
     const token = localStorage.getItem("token");
-    await fetch(`http://localhost:3000/api/notes/${id}`, {
+    await fetch(`${server}/api/notes/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -97,7 +98,7 @@ const FrontSectionContaier = () => {
   const handleUpdateNote = async (id, updatedData) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:3000/api/notes/${id}`, {
+      const res = await fetch(`${server}/api/notes/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -130,7 +131,7 @@ const FrontSectionContaier = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/api/todo", {
+      const res = await fetch(`${server}/api/todo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -155,7 +156,7 @@ const FrontSectionContaier = () => {
   const handleDeleteTodo = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await fetch(`http://localhost:3000/api/todo/${id}`, {
+      await fetch(`${server}/api/todo/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -168,7 +169,7 @@ const FrontSectionContaier = () => {
   const handleUpdateTodo = async (id, updatedData) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:3000/api/todo/${id}`, {
+      const res = await fetch(`${server}/api/todo/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
