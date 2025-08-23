@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
-import Card from "./Card";
-import Todo from "./Todo";
+import NoteCard from "./NoteCard";
+import TodoCard from "./TodoCard";
 import { motion, AnimatePresence } from "framer-motion";
 
-const CardContainer = () => {
+const FrontSectionContaier = () => {
 
   const [activeForm, setActiveForm] = useState(null)
   const formRef = useRef(null);
@@ -191,7 +191,7 @@ const CardContainer = () => {
         style={{ scrollbarWidth: "none" }}
       >
         {notes.map((note) => (
-          <Card
+          <NoteCard
             key={note._id}
             data={note}
             reference={ref}
@@ -201,7 +201,7 @@ const CardContainer = () => {
         ))}
 
         {todos.map((todo) => (
-          <Todo
+          <TodoCard
             key={todo._id}
             data={todo}
             reference={ref}
@@ -376,4 +376,4 @@ const CardContainer = () => {
   );
 };
 
-export default CardContainer;
+export default FrontSectionContaier;

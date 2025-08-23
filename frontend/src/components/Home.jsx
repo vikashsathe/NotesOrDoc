@@ -1,6 +1,6 @@
 import React from "react";
-import MainContainer from "./MainContainer";
-import CardContainer from "./CardContaier"
+import MainSectionContainer from "./MainSectionContainer";
+import FrontSectionContaier from "./FrontSectionContaier"
 import Header from "./Header";
 
 
@@ -8,8 +8,8 @@ const Home = () => {
   return (
    <>
    <Header />
-   <MainContainer />
-   <CardContainer />
+   <MainSectionContainer />
+   <FrontSectionContaier />
    </>
   );
 };

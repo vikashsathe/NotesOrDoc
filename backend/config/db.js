@@ -1,12 +1,14 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const connectDB = async () => {
-    try {
-        await mongoose.connect("mongodb://127.0.0.1:27017/note")
-        console.log("MongoDB connected")
-    } catch (err) {
-        console.log("MongoDB error:", err)
-    }
-}
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error("MongoDB error:", err);
+  }
+};
 
-module.exports = connectDB
+module.exports = connectDB;

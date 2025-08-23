@@ -61,6 +61,7 @@ useEffect(() => {
         <i className="ri-user-fill text-2xl bg-gradient-to-r from-[#4285F4] via-[#34A853] via-[#FBBC05] to-[#EA4335] text-transparent bg-clip-text"></i>
       </div>
 
+
       {showProfile && (
         <div className="absolute border-s-[0.2px] border-yellow-500 top-0 w-2/6 h-screen right-0 p-10 bg-zinc-600 text-black shadow-lg">
           {/* Close button */}
@@ -98,12 +99,7 @@ useEffect(() => {
             </div>
           )}
 
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 cursor-pointer text-white px-10 py-2 rounded hover:bg-red-600"
-          >
-            Logout
-          </button>
+          <button onClick={handleLogout} className="bg-red-500 cursor-pointer text-white px-10 py-2 rounded hover:bg-red-600"> Logout </button>
           </div>
 
       
