@@ -49,7 +49,7 @@ useEffect(() => {
   return (
     <nav className="fixed z-10 flex justify-between items-center px-5 top-0 bg-zinc-700 w-full py-5">
       <div>
-        <h1 className="text-4xl font-medium">
+        <h1 className="text-3xl md:text-4xl font-medium">
           <span className="text-yellow-500">Keep</span>Note
         </h1>
       </div>
@@ -63,10 +63,10 @@ useEffect(() => {
 
 
       {showProfile && (
-        <div className="absolute border-s-[0.2px] border-yellow-500 top-0 w-2/6 h-screen right-0 p-10 bg-zinc-600 text-black shadow-lg">
+        <div className="absolute border-s-[0.2px] border-yellow-500 top-0 w-3/4 md:w-2/6 h-screen right-0 p-4 md:p-10 bg-zinc-600 text-black shadow-lg">
           {/* Close button */}
           <div className="flex justify-between items-center mb-3">
-            <h1 className="font-semibold text-5xl"> <span className="text-yellow-500">Keep</span>Notes</h1>
+            <h1 className="font-semibold md:text-5xl text-3xl"> <span className="text-yellow-500">Keep</span>Notes</h1>
             <i
               onClick={() => setShowProfile(false)}
               className="ri-close-line text-4xl cursor-pointer hover:text-zinc-300"
@@ -75,31 +75,31 @@ useEffect(() => {
 
         
           <div className="mt-10 flex gap-5 flex-col whitespace-nowrap capitalize">
-            <p className="text-2xl cursor-pointer hover:text-yellow-500">
+            <p className="text-[20px] md:text-2xl cursor-pointer hover:text-yellow-500">
               <i className="ri-lightbulb-line"></i> notes
             </p>
-            <p className="text-2xl cursor-pointer hover:text-yellow-500">
+            <p className="text-[20px] md:text-2xlcursor-pointer hover:text-yellow-500">
               <i className="ri-notification-3-line"></i> reminders
             </p>
-            <p className="text-2xl cursor-pointer hover:text-yellow-500">
+            <p className="text-[20px] md:text-2xl cursor-pointer hover:text-yellow-500">
               <i className="ri-delete-bin-6-line"></i> trash
             </p>
-            <p className="text-2xl cursor-pointer hover:text-yellow-500">
+            <p className="text-[20px] md:text-2xl cursor-pointer hover:text-yellow-500">
               <i className="ri-settings-4-line"></i> settings
             </p>
           </div>
 
-          <div className="absolute bottom-10 left-0 px-10 flex justify-between items-center w-full">
-            {/* ✅ Show user info */}
+          <div className="absolute bottom-10 left-0  md:px-10 p-4 flex justify-between items-start w-full">
+            {/*  Show user info */}
           {user && (
             <div className="cursor-pointer">
-              <i class="ri-user-fill text-2xl rounded-4xl bg-yellow-500 p-1"></i>
-              <p className="text-xl mt-1 capitalize">{user.name}</p>
-              <p className="text-sm">{user.email}</p>
+              <i class="ri-user-fill text-xl md:text-2xl rounded-4xl bg-yellow-500 p-1"></i>
+              <p className="text-sm md:text-xl mt-1 capitalize">{user.name}</p>
+              <p className="text-xs md:text-sm">{user.email}</p>
             </div>
           )}
 
-          <button onClick={handleLogout} className="bg-red-500 cursor-pointer text-white px-10 py-2 rounded hover:bg-red-600"> Logout </button>
+          <button onClick={handleLogout} className="bg-red-500 cursor-pointer text-white md:px-10 md:py-2 px-4 py-1 rounded hover:bg-red-600"> Logout </button>
           </div>
 
       

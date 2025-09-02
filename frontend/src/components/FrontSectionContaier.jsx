@@ -232,7 +232,7 @@ const FrontSectionContaier = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute newNoteForm bg-zinc-500 w-2/6 min-h-1/2 p-5 rounded-xl shadow-lg text-white"
+            className="absolute newNoteForm bg-zinc-500 md:w-2/6 w-5/6 md:min-h-1/2 h-3/5 p-5 rounded-xl shadow-lg text-white"
           >
             <div className="flex justify-between items-center">
               <i
@@ -282,7 +282,7 @@ const FrontSectionContaier = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute newTodoForm bg-zinc-600 w-2/5 h-1/2 px-10 py-5 rounded-xl shadow-lg text-white overflow-scroll"
+            className="absolute newTodoForm bg-zinc-600 md:w-2/5  md:h-1/2 md:px-10 md:py-5 w-5/6 h-2/5 px-5 py-3 rounded-xl shadow-lg text-white overflow-scroll"
             style={{ scrollbarWidth: "none" }}
           >
             <form onSubmit={handleTodoSubmit}>
@@ -325,13 +325,13 @@ const FrontSectionContaier = () => {
                
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-green-500 hover:bg-green-600 rounded"
+                  className="md:px-6 md:py-2 px-2 py-2 bg-green-500 hover:bg-green-600 rounded"
                 >
                   Save Todo
                 </button>
                  <p
                   onClick={addTask}
-                  className="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 rounded cursor-pointer"
+                  className="md:px-6 md:py-2 px-2 py-2 bg-yellow-500 hover:bg-yellow-600 rounded cursor-pointer"
                 >
                   Add Task
                 </p>
