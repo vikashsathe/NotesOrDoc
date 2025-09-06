@@ -51,9 +51,9 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-zinc-700 w-full h-screen flex justify-center items-center">
+    <div className="bg-zinc-700 w-full h-screen flex justify-center items-center p-5">
       <div className="w-96 bg-zinc-600 p-6 rounded-xl shadow-lg">
-        <h2 className="text-3xl text-center mb-5">Login</h2>
+        <h2 className="text-3xl text-center py-5 mb-4">Login</h2>
 
         <form onSubmit={handleSubmit}>
           <input
@@ -64,7 +64,7 @@ const Login = () => {
             onChange={handleChange}
             required
             autoComplete="email"
-            className="w-full p-2 border rounded mb-3"
+            className="w-full p-2 border rounded mb-3 outline-none"
           />
 
           <input
@@ -75,12 +75,12 @@ const Login = () => {
             onChange={handleChange}
             required
             autoComplete="current-password"
-            className="w-full p-2 border rounded mb-3"
+            className="w-full p-2 border rounded mb-3 outline-none"
           />
 
           <button
             type="submit"
-            className="w-full py-2 bg-zinc-700 text-white rounded mb-2"
+            className="w-full py-2 bg-zinc-700 rounded mb-2"
           >
             Login
           </button>
